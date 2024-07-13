@@ -1,11 +1,12 @@
 import CollectionPage from "@/components/CollectionPage"
+import DocumentPage from "./document/page"
 
  
 
 const Home = () => {
   return (
     <div>
-      <CollectionPage />
+     <DocumentPage />
     </div>
   )
 }

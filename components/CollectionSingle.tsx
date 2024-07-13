@@ -21,34 +21,40 @@ const CollectionSingle: React.FC<CollectionFormProps> = ({initialData}) => {
  
     
  return loading ? <Loader /> : (
-  <div className="-mx-4 flex flex-col gap-4 items-center justify-center"> 
-  <div className="w-full px-4 lg:w-8/12">
+  <div className=" grid grid-cols-1 gap-y-16 lg:grid-cols-15 lg:grid-rows-[auto_1fr] lg:gap-y-2  "> 
+  <div className="w-full px-12 lg:w-8/12">
   {user && (
         <div className="gap gap-4 flex items-center mt-4"> 
         <Link href={`/blog/${initialData?.id}`} className="hover:text-blue-700"><Edit /></Link>
        
         </div>
     )}
+    
     <h2 className="mb-8 text-3xl font-bold leading-tight text-black dark:text-white sm:text-4xl">{initialData?.title}</h2>
     <div className="mb-10 w-full overflow-hidden rounded">
+                   
                     <div className="relative aspect-[97/60] w-full sm:aspect-[97/44]">
                       <Image
-                        src={initialData?.image || ""}
+                        src={initialData?.image }
                         alt="Blog"
-                        className="object-cover object-center"
+                         
                         fill
                       />
                     </div>
                   </div>
     <div className={styles.post}>
+      
     <div
             className={styles.description}
             dangerouslySetInnerHTML={{ __html: initialData?.description }}
           />
  
  </div>
+
  </div>
-    
+<div className='space-y-10 lg:pl-16 xl:pl-24'>
+<h2 className='flex text-sm font-semibold text-zinc-900 dark:text-zinc-100'>asd</h2>
+</div>
   </div>
  )
 }

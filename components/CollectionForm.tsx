@@ -30,7 +30,7 @@ import Link from "next/link"
 
 const formSchema = z.object({
   title: z.string().min(2).max(120),
-  description: z.string().min(2).max(2000).trim(),
+  description: z.string().min(2).max(3000).trim(),
   image: z.string(),
 });
 

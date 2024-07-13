@@ -45,15 +45,11 @@ export const TopBar = () => {
                 onClick={()=>setDropdownMenu(!dropdownMenu)}>X</button>
             </div>
             )}
-<FaSearch className='cursor-pointer' onClick={()=>setDropdownSearch(!dropdownSearch)} />
+          <FaSearch className='cursor-pointer' onClick={()=>setDropdownSearch(!dropdownSearch)} />
             {dropdownSearch && (
                 <div className='absolute top-10 right-6 flex flex-col gap-8 b-5 bg-white shadow-xl rounded-lg '> 
                  <SearchPage />
-                <div>
-                <button
-                className='text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2'
-                onClick={()=>setDropdownSearch(!dropdownSearch)}>X</button>
-                </div>
+                
             </div>
             )}
 
