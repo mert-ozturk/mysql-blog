@@ -5,7 +5,7 @@ import CollectionPage from "@/components/CollectionPage"
 const Home = () => {
   return (
     <div>
-    <CollectionPage   />
+      <CollectionPage />
     </div>
   )
 }

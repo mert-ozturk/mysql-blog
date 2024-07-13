@@ -23,7 +23,7 @@ import {  useRouter } from "next/navigation"
 import toast from "react-hot-toast"
 import Delete from "@/components/custom ui/Delete"  
 import { AlertCircle } from "lucide-react"
-import {  useUser } from "@clerk/nextjs"
+import {  useSession, useUser } from "@clerk/nextjs"
  
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import Link from "next/link"
@@ -42,8 +42,19 @@ const WritePage: React.FC<CollectionFormProps> = ({initialData}) => {
    const router = useRouter()
    const [loading,setLoading] = useState(false)
    const {user} = useUser()
+   const {session} = useSession()
 
- 
+   if(session?.user?.id !== "user_2imMvQkvxz5cGRPChUFeYnekY3U"){
+      return (
+        <Alert variant="destructive">
+      <AlertCircle className="h-4 w-4" />
+      <AlertTitle>Error</AlertTitle>
+      <AlertDescription>
+        Your session has expired. Please Admin <Link href="/sign-in" className="text-blue-700">log in</Link> again.
+      </AlertDescription>
+    </Alert>
+      )
+    }
 
    const form = useForm<z.infer<typeof formSchema>>({
        resolver: zodResolver(formSchema),

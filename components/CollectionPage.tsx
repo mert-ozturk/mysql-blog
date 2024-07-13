@@ -1,24 +1,19 @@
 "use client"
-import { columns } from '@/components/collections/CollectionsColumns'
-import { DataTable } from '@/components/custom ui/DataTable'
-import { Button } from '@/components/ui/button'
-import { Separator } from '@radix-ui/react-separator'
-import { Plus } from 'lucide-react'
-import Image from 'next/image'
-import { useParams, useRouter } from 'next/navigation'
-import React, { useEffect, useState } from 'react'
-import styles from "./card.module.css";
  
+import Image from 'next/image'
+import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
+import Loader from './custom ui/Loader'
  
 
 
 const CollectionPage = ( ) => {
-  const params = useParams()
-  const router = useRouter()
+ 
   const [loading,setLoading] = useState(false)
   const [collections,setCollections] = useState([])
-  
+ 
+
+
   const getCollections = async () => {
     try{
       const res = await fetch("/api/collections",{
@@ -39,10 +34,10 @@ const CollectionPage = ( ) => {
 
   
   console.log(collections)
-  return (
+  return loading ? <Loader /> : (
     <div className="-mx-1 grid grid-cols-3 gap-5">
+    
       
-
       {collections.map((item)=>(
     <div className='m-4 cursor-pointer'>
          <Link className="p-5 shadow-lg rounded cursor-pointer" href={`/collections/${item.id}`}>
