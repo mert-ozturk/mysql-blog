@@ -34,7 +34,7 @@ const Delete: React.FC<DeleteProps> = ({ item, id }) => {
 
     if(res.ok){
       setLoading(false)
-      window.location.href = ("/collections")
+      window.location.href = ("/")
       toast.success("Collection deleted")
     }
 

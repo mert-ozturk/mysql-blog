@@ -4,6 +4,7 @@ import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
  
 import { TopBar } from "@/components/layout/TopBar";
+import Footer from "./footer/page";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,6 +24,7 @@ export default function RootLayout({
       <body className={inter.className}>
        <TopBar />
         {children}
+        <Footer />
         </body>
     </html>
     </ClerkProvider>

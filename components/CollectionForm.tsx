@@ -72,7 +72,7 @@ const CollectionForm: React.FC<CollectionFormProps> = ({initialData}) => {
         if(res.ok){
           setLoading(false)
           toast.success("Collection created")
-          window.location.href = "/collections"
+          window.location.href = "/"
           router.push("/collections")
         }
        }catch(err){

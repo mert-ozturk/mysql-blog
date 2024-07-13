@@ -1,14 +1,15 @@
 "use client"
- 
+import { AlertCircle } from "lucide-react"
 import styles from './collection.module.css'
 import React, { useState } from 'react'
 import "react-quill/dist/quill.bubble.css"; 
 import Image from "next/image"
 import Link from "next/link"
 import { Edit } from "lucide-react"
-import { useUser } from "@clerk/nextjs"
+import { useSession, useUser } from "@clerk/nextjs"
 import Loader from "./custom ui/Loader"
- 
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
+import Delete from "./custom ui/Delete";
 
 interface CollectionFormProps{
  initialData?: CollectionType | null;
@@ -18,15 +19,20 @@ const CollectionSingle: React.FC<CollectionFormProps> = ({initialData}) => {
   
    const [loading,setLoading] = useState(false)
    const { user } = useUser();
- 
+  const {session} = useSession()
     
  return loading ? <Loader /> : (
   <div className=" grid grid-cols-1 gap-y-16 lg:grid-cols-15 lg:grid-rows-[auto_1fr] lg:gap-y-2  "> 
   <div className="w-full px-12 lg:w-8/12">
+
   {user && (
         <div className="gap gap-4 flex items-center mt-4"> 
-        <Link href={`/blog/${initialData?.id}`} className="hover:text-blue-700"><Edit /></Link>
-       
+          { session?.user?.id === "user_2imMvQkvxz5cGRPChUFeYnekY3U" &&(
+            <> 
+        <Link href={`/edit/${initialData?.id}`} className="hover:text-blue-700"><Edit /></Link>
+        <Delete id={initialData.id} />
+            </>
+          )}
         </div>
     )}
     

@@ -4,6 +4,11 @@ import {
     LayoutDashboard,
     Shapes,
     ShoppingBag,
+    House,
+    NotebookPen,
+    Newspaper,
+    Mail,
+    Building2,
     Tag,
     UsersRound,
   } from "lucide-react";
@@ -11,13 +16,29 @@ import {
   export const navLinks = [
     {
       url: "/",
-      icon: <LayoutDashboard />,
+      icon:  <House />,
       label: "Home",
     },
     {
+      url: "/blog",
+      icon: <Newspaper />,
+      label: "Blog",
+    },
+    
+    {
       url: "/write",
-      icon: <Shapes />,
+      icon: <NotebookPen />,
       label: "Write-Blog",
+    },
+    {
+      url: "/about",
+      icon: <Building2 />,
+      label: "About",
+    },
+    {
+      url: "/contact",
+      icon: <Mail />,
+      label: "Contact",
     },
     
    
