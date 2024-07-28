@@ -5,8 +5,7 @@ import emailjs from "@emailjs/browser"
 
 
 const Contact  = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
+  const [security,setSecurity] = useState("")
   const [formData, setFormData] = React.useState({
     name: "",
     email: "",
@@ -49,6 +48,8 @@ const Contact  = () => {
     }))
   }
 
+  
+
   return (
     <section className="bg-white dark:bg-gray-900">
   <div className="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
@@ -69,7 +70,15 @@ const Contact  = () => {
               <label  className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Your message</label>
               <textarea name='message' value={formData.message} onChange={handleChange}   className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Leave a comment..."></textarea>
           </div>
-          <Button type="submit"  >Send message</Button>
+          <div className="sm:col-span-2">
+          <label  className="block mb-2 text-sm font-medium text-red-500 dark:text-gray-400">Türkiye'nin Başkenti  (küçük harfler ile)</label>
+            <input   onChange={(e)=>setSecurity(e.target.value)} className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" />
+            {security === "ankara"   && (
+          <>
+          <Button type="submit" >Send message</Button>
+          </>
+        )}
+        </div>
       </form>
   </div>
 </section>

@@ -5,3 +5,9 @@ type CollectionType = {
     image:string,
     products:ProductType[];
 }
+
+type ChatFormPropsType = {
+    _id:string,
+    message:string,
+    
+}

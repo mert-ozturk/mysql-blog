@@ -29,39 +29,27 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import Link from "next/link"
 
 const formSchema = z.object({
- title: z.string().min(2).max(120),
- description: z.string().min(2).max(15000).trim(),
- image: z.string(),
+ 
+ message: z.string().min(2).max(5000).trim(),
+ 
 });
 
-interface CollectionFormProps{
- initialData?: CollectionType | null;
+interface ChatFormProps{
+ initialData?: ChatFormPropsType | null;
 }
 
-const WritePage: React.FC<CollectionFormProps> = ({initialData}) => {
+const ChatWrite: React.FC<ChatFormProps> = ({initialData}) => {
    const router = useRouter()
    const [loading,setLoading] = useState(false)
    const {user} = useUser()
    const {session} = useSession()
 
-   if(session?.user?.id !== "user_2imMvQkvxz5cGRPChUFeYnekY3U"){
-      return (
-        <Alert variant="destructive">
-      <AlertCircle className="h-4 w-4" />
-      <AlertTitle>Error</AlertTitle>
-      <AlertDescription>
-        Your session has expired. Please Admin <Link href="/sign-in" className="text-blue-700">log in</Link> again.
-      </AlertDescription>
-    </Alert>
-      )
-    }
+    
 
    const form = useForm<z.infer<typeof formSchema>>({
        resolver: zodResolver(formSchema),
        defaultValues: initialData ? initialData : {
-         title: "",
-         description:"",
-         image:"",
+        message:"",
 
        },
      })
@@ -75,7 +63,7 @@ const WritePage: React.FC<CollectionFormProps> = ({initialData}) => {
      const onSubmit = async (values: z.infer<typeof formSchema>) => {
       try{
        setLoading(true)
-       const url = initialData ? `/api/collections/${initialData.id}` : "/api/collections" ;
+       const url = initialData ? `/api/text/${initialData._id}` : "/api/text" ;
        const res = await fetch(url,{
          method: "POST",
          body:JSON.stringify(values),
@@ -83,7 +71,7 @@ const WritePage: React.FC<CollectionFormProps> = ({initialData}) => {
        if(res.ok){
          setLoading(false)
          toast.success("Collection created")
-         window.location.href = "/collections"
+         window.location.href = "/chat"
          router.push("/")
        }
       }catch(err){
@@ -99,8 +87,8 @@ const WritePage: React.FC<CollectionFormProps> = ({initialData}) => {
      {initialData ? (
        <div className="flex items-center justify-between"> 
        <p className='text-gray-700 text-heading2-bold'>Edit Collection</p>
-       <Delete id={initialData.id} />
-       
+         
+     
        </div>
      ) : (
        <p className='text-gray-700 text-heading2-bold'>Create Collection</p>
@@ -110,25 +98,13 @@ const WritePage: React.FC<CollectionFormProps> = ({initialData}) => {
 
        <Form {...form}>
      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-       <FormField
-         control={form.control}
-         name="title"
-         render={({ field }) => (
-           <FormItem>
-             <FormLabel>Title</FormLabel>
-             <FormControl>
-               <Input placeholder="Title" {...field} onKeyDown={handleKeyPress} />
-             </FormControl>
-             <FormMessage />
-           </FormItem>
-         )}
-       />
+       
         <FormField
          control={form.control}
-         name="description"
+         name="message"
          render={({ field }) => (
            <FormItem>
-             <FormLabel>Description</FormLabel>
+             <FormLabel>Message</FormLabel>
              <FormControl>
                 
                <ReactQuill
@@ -142,23 +118,7 @@ const WritePage: React.FC<CollectionFormProps> = ({initialData}) => {
            </FormItem>
          )}
        />
-          <FormField
-         control={form.control}
-         name="image"
-         render={({ field }) => (
-           <FormItem>
-             <FormLabel>Image</FormLabel>
-             <FormControl>
-             <ImageUpload
-                   value={field.value ? [field.value] : []}
-                   onChange={(url) => field.onChange(url)}
-                   onRemove={() => field.onChange("")}
-                 />
-             </FormControl>
-             <FormMessage />
-           </FormItem>
-         )}
-       />
+           
       <div className="flex gap-10">
       <Button type="submit" >Submit</Button>
       <Button type="button" onClick={()=>router.push("/")}>Discard</Button>
@@ -179,4 +139,4 @@ const WritePage: React.FC<CollectionFormProps> = ({initialData}) => {
  )
 }
 
-export default WritePage
+export default ChatWrite

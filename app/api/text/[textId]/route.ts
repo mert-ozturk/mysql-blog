@@ -3,16 +3,16 @@ import { auth } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 
 export async function GET( req:Request,
-    {params} : {params:{ collectionId:string}}
+    {params} : {params:{ textId:string}}
 ){
 
     try{
-        if(!params.collectionId){
+        if(!params.textId){
             return new NextResponse("Billboard id required",{status:400})
         }    
-        const billboard = await prismadb.collection.findUnique({
+        const billboard = await prismadb.text.findUnique({
             where:{
-                id: params.collectionId,
+                id: params.textId,
             },
         })
 
@@ -26,33 +26,26 @@ export async function GET( req:Request,
 
 
 export async function POST( req:Request,
-    {params} : {params:{collectionId:string}}
+    {params} : {params:{textId:string}}
 ){
 
     try{    
             const body = await req.json()
 
-        const {title,description,image} = body;
+        const {message} = body;
 
-         if(!title){
+         if(!message){
         return new NextResponse("Unauthenticated",{status:401})
             }
-            if(!description){
-                return new NextResponse("Unauthenticated",{status:401})
-                    }
-                    if(!image){
-                        return new NextResponse("Unauthenticated",{status:401})
-                            }
+            
      
         
-        const billboard = await prismadb.collection.update({
+        const billboard = await prismadb.text.update({
             where:{
-                id:params.collectionId,
+                id:params.textId,
             },
             data:{
-                title,
-               description,
-               image,
+               message,
             }
         })
 
@@ -66,19 +59,19 @@ export async function POST( req:Request,
 
 
 export async function DELETE( req:Request,
-    {params} : {params:{  collectionId:string}}
+    {params} : {params:{  textId:string}}
 ){
 
     try{
        
-        if(!params.collectionId){
+        if(!params.textId){
             return new NextResponse("Billboard id required",{status:400})
         }
 
 
-        const billboard = await prismadb.collection.delete({
+        const billboard = await prismadb.text.delete({
             where:{
-                id: params.collectionId,
+                id: params.textId,
             },
         })
 

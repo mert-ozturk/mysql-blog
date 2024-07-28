@@ -7,14 +7,18 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import React, { useState } from 'react'
 import { Button } from '../ui/button'
-import { FaSearch } from "react-icons/fa";
+import { FaSearch, FaShoppingBag } from "react-icons/fa";
 import SearchPage from '../SearchPage'
 
 export const TopBar = () => {
     const pathname = usePathname()
     const [dropdownMenu,setDropdownMenu] = useState(false)
     const [dropdownSearch,setDropdownSearch] = useState(false)
-    const {user} = useUser()
+    const [dropBag,setDropBag] = useState(false)
+    const [stok,setStok] = useState("0")
+    const {user} = useUser() 
+
+ 
 
   return (
     <div
@@ -47,6 +51,11 @@ export const TopBar = () => {
                 onClick={()=>setDropdownMenu(!dropdownMenu)}>X</button>
             </div>
             )}
+          <FaShoppingBag  className='cursor-pointer' onClick={()=>setDropBag(!dropBag)}  />
+          {dropBag && (
+                 <p className='text to-black'>{stok}</p>
+            )}
+          
           <FaSearch className='cursor-pointer' onClick={()=>setDropdownSearch(!dropdownSearch)} />
             {dropdownSearch && (
                 <div className='absolute top-10 right-6 flex flex-col gap-8 b-5 bg-white shadow-xl rounded-lg '> 

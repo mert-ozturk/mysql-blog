@@ -1,5 +1,5 @@
  
- 
+import MenuBookIcon from '@mui/icons-material/MenuBook';
 import {
     LayoutDashboard,
     Shapes,
@@ -11,6 +11,7 @@ import {
     Building2,
     Tag,
     UsersRound,
+    Text,
   } from "lucide-react";
   
   export const navLinks = [
@@ -21,7 +22,7 @@ import {
     },
     {
       url: "/blog",
-      icon: <Newspaper />,
+      icon: <MenuBookIcon />,
       label: "Blog",
     },
     
@@ -39,6 +40,11 @@ import {
       url: "/contact",
       icon: <Mail />,
       label: "Contact",
+    },
+    {
+      url: "/chat",
+      icon: <Text />,
+      label: "Chat",
     },
     
    

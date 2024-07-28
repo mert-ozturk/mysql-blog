@@ -30,7 +30,7 @@ const CollectionSingle: React.FC<CollectionFormProps> = ({initialData}) => {
           { session?.user?.id === "user_2imMvQkvxz5cGRPChUFeYnekY3U" &&(
             <> 
         <Link href={`/edit/${initialData?.id}`} className="hover:text-blue-700"><Edit /></Link>
-        <Delete id={initialData.id} />
+        <Delete id={initialData?.id} />
             </>
           )}
         </div>
@@ -43,7 +43,6 @@ const CollectionSingle: React.FC<CollectionFormProps> = ({initialData}) => {
                       <Image
                         src={initialData?.image }
                         alt="Blog"
-                         
                         fill
                       />
                     </div>

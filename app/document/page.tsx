@@ -66,7 +66,12 @@ const DocumentPage = ( ) => {
     </div>
         </Link>
       <div className="mt-1 text-base tracking-tight text-slate-500" dangerouslySetInnerHTML={{ __html: item?.description.substring(0,170)   }}/>
-        <Link className="inline-flex items-center justify-center rounded-full bg-primary py-2 px-4 text-sm font-semibold text-white" href={`/collections/${item.id}`}>Detay</Link>
+         
+        <div aria-hidden="true" className="relative z-10 mt-4 flex items-center text-sm font-medium text-teal-500"> 
+        <Link href={`/collections/${item.id}`}>Devamı...</Link>  
+<svg viewBox="0 0 16 16" fill="none" aria-hidden="true" className="ml-1 h-4 w-4 stroke-current"></svg>
+
+</div>
         </div>
          
       ))}

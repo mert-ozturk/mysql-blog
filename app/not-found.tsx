@@ -16,11 +16,7 @@ import MenuBookIcon from '@mui/icons-material/MenuBook';
 const NotFound = () => {
     const customTheme = useTheme();
     const router = useRouter()
-    useEffect(()=> {
-        setTimeout(()=>{
-            router.push("/")
-        },5000)
-    },[])
+ 
 
   return (
     <>
